@@ -1,0 +1,18 @@
+{
+    "name": "memassist/statbench",
+    "type": "library",
+    "description": "Timing the execution of a program or a block of code.",
+    "homepage": "https://github.com/memassist/statbench",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Statbench\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Statbench\\Tests\\": "tests/"
+        }
+    },
+    "bin": ["bin/statbench"]
+}

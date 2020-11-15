@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+//use Statbench\Console\Console;
+//use Statbench\Console\IO as ConsoleIO;
+
+$autoload = null;
+
+$autoloadFiles = [
+    __DIR__ . '/../vendor/autoload.php'
+];
+
+foreach ($autoloadFiles as $autoloadFile) {
+    if (file_exists($autoloadFile)) {
+        $autoload = $autoloadFile;
+        break;
+    }
+}
+
+if (! $autoload) {
+    echo "Autoload file not found; try 'composer dump-autoload' first." . PHP_EOL;
+    exit(1);
+}
+
+require $autoload;
+
+//$console = new Console(new ConsoleIO());
+//$executeState = $console->execute($argv);
+//$executeState === true ? exit(0) : exit(1);
