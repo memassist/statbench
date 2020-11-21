@@ -1,7 +1,6 @@
 # Statbench
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/memassist/statbench/CI)
-![GitHub Workflow Status](https://github.com/memassist/statbench/workflows/CI/badge.svg)
+![GitHub Workflow Status](https://github.com/memassist/statbench/workflows/tests/badge.svg)
 [![codecov](https://codecov.io/gh/memassist/statbench/branch/main/graph/badge.svg?token=FKAI48NUW3)](https://codecov.io/gh/memassist/statbench)
 ![Lisence](https://img.shields.io/github/license/memassist/statbench)
 
