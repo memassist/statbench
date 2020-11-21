@@ -1,15 +1,40 @@
 name: CI
 
-on: [push]
+on:
+    pull_request:
+    push:
+        branches:
+        - "main"
 
 jobs:
     build-test:
+        name: PHP ${{ matrix.php-versions }}
         runs-on: ubuntu-latest
-
+        strategy:
+            matrix:
+                php-versions: ['7.4']
         steps:
-            - uses: actions/checkout@v2
-            - uses: php-actions/composer@v4
-            - name: PHPUnit (php-actions)
+#            - name: Setup PHP
+#              uses: shivammathur/setup-php@1.8.2
+#              with:
+#                  php-version: "${{ matrix.php-versions }}"
+#                  extensions: intl
+#                  coverage: pcov
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Install composer dependencies
+              uses: php-actions/composer@v4
+            - name: PHPUnit tests & coverage
               uses: php-actions/phpunit@v1
               with:
                   configuration: phpunit.xml.dist
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v1
+              with:
+                  #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+                  file: ./coverage.xml
+                  flags: unittests,tests
+                  name: codecov-umbrella
+                  yml: ./codecov.yml
+                  fail_ci_if_error: true
+                  verbose: true

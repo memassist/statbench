@@ -1,8 +1,11 @@
-.idea
+/.idea
+/.vscode
 
-build
-composer.lock
-vendor
+/composer.lock
+/vendor
+
 phpcs.xml
+
 phpunit.xml
 .phpunit.result.cache
+coverage.xml
