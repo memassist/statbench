@@ -1,12 +1,16 @@
 #!/usr/bin/env php
 <?php
-//use Statbench\Console\Console;
-//use Statbench\Console\IO as ConsoleIO;
+
+if (PHP_SAPI !== 'cli' || basename(__FILE__) !== basename($argv[0])) {
+    echo 'Warning: Statbench should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+    exit(1);
+}
 
 $autoload = null;
 
 $autoloadFiles = [
-    __DIR__ . '/../vendor/autoload.php'
+    __DIR__.'/../vendor/autoload.php',
+    __DIR__.'/../../../autoload.php',
 ];
 
 foreach ($autoloadFiles as $autoloadFile) {
@@ -17,12 +21,73 @@ foreach ($autoloadFiles as $autoloadFile) {
 }
 
 if (! $autoload) {
-    echo "Autoload file not found; try 'composer dump-autoload' first." . PHP_EOL;
+    echo "Autoload file not found; try 'composer dump-autoload' first.".PHP_EOL;
     exit(1);
 }
 
 require $autoload;
 
-//$console = new Console(new ConsoleIO());
-//$executeState = $console->execute($argv);
-//$executeState === true ? exit(0) : exit(1);
+use Statbench\Console\CmdList;
+use Statbench\Console\CmdRun;
+use Statbench\Console\CmdCsvFile;
+use Statbench\Console\CmdCsvDir;
+use Statbench\Console\CmdCsvDirMulti;
+use Statbench\Params\ParamsConsole;
+use Statbench\Params\ParamsConsoleFactory;
+use Statbench\Params\ParamsMain;
+use Statbench\Params\ParamsCsv;
+use Statbench\Console\Console;
+use Statbench\Console\ConsoleIO;
+use Exception;
+
+$commands_whitelist = [
+    'list'  => CmdList::class,
+    'run'   => CmdRun::class,
+    'file'  => CmdCsvFile::class,
+    'dir'   => CmdCsvDir::class,
+    'multi' => CmdCsvDirMulti::class,
+];
+
+$io      = new ConsoleIO();
+$console = new Console(new CmdList($io, $commands_whitelist));
+
+if (count($argv) > 1) {
+    try {
+        $params_factory = new ParamsConsoleFactory($argv);
+        $params         = $params_factory->createParams($commands_whitelist);
+        $params_console = $params->getParamsConsole();
+        $params_csv     = $params->getParamsCsv();
+        $params_main    = $params->getParamsMain();
+
+        switch ($params_console->getCommand()) {
+            case 'run':
+                $command = new CmdRun($io, $params_main);
+                break;
+            case 'file':
+                $command = new CmdCsvFile($io, $params_csv, $params_main);
+                break;
+            case 'dir':
+                $command = new CmdCsvDir($io, $params_csv, $params_main);
+                break;
+            case 'multi':
+                $command = new CmdCsvDirMulti($io, $params_csv, $params_main);
+                break;
+            case 'list':
+            default:
+                $command = new CmdList($io, $commands_whitelist);
+                break;
+        }
+
+        $console->setCommand($command);
+    } catch (Exception $e) {
+        $io->puts(
+            "Error while parsing parameters: ".$e->getMessage(),
+            ConsoleIO::STYLE_RED,
+            true
+        );
+        $console->setCommand(new CmdList($io, $commands_whitelist));
+    }
+}
+
+$executeState = $console->runCommand();
+$executeState === true ? exit(0) : exit(1);
