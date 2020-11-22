@@ -1,8 +1,8 @@
 # Statbench
 
-![GitHub Workflow Status](https://github.com/memassist/statbench/workflows/tests/badge.svg)
+[![tests](https://github.com/memassist/statbench/workflows/tests/badge.svg)](https://github.com/memassist/statbench/actions)
 [![codecov](https://codecov.io/gh/memassist/statbench/branch/main/graph/badge.svg?token=FKAI48NUW3)](https://codecov.io/gh/memassist/statbench)
-![Lisence](https://img.shields.io/github/license/memassist/statbench)
+[![license](https://img.shields.io/github/license/memassist/statbench)](LICENSE)
 
 A PHP package for timing the execution of a program or a block of code.
 
