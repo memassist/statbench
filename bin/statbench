@@ -38,7 +38,6 @@ use Statbench\Params\ParamsMain;
 use Statbench\Params\ParamsCsv;
 use Statbench\Console\Console;
 use Statbench\Console\ConsoleIO;
-use Exception;
 
 $commands_whitelist = [
     'list'  => CmdList::class,
@@ -48,7 +47,7 @@ $commands_whitelist = [
     'multi' => CmdCsvDirMulti::class,
 ];
 
-$io      = new ConsoleIO();
+$io      = new ConsoleIO(STDIN, STDOUT);
 $console = new Console(new CmdList($io, $commands_whitelist));
 
 if (count($argv) > 1) {
