@@ -1,12 +1,12 @@
-# Statbench
+# StatBench
 
-[![tests](https://github.com/memassist/statbench/workflows/tests/badge.svg)](https://github.com/memassist/statbench/actions)
-[![codecov](https://codecov.io/gh/memassist/statbench/branch/main/graph/badge.svg?token=FKAI48NUW3)](https://codecov.io/gh/memassist/statbench)
-[![license](https://img.shields.io/github/license/memassist/statbench)](LICENSE)
+[![tests](https://github.com/statbench/statbench/workflows/tests/badge.svg)](https://github.com/statbench/statbench/actions)
+[![codecov](https://codecov.io/gh/statbench/statbench/branch/main/graph/badge.svg?token=FKAI48NUW3)](https://codecov.io/gh/statbench/statbench)
+[![license](https://img.shields.io/github/license/statbench/statbench?style=flat)](./LICENSE)
 
-A PHP package for timing the execution of a program or a block of code.
+A *Command-Line Interface* and *PHP library* for timing the execution of a program or a block of code.
 
-Accurately measuring small wall-clock execution times is not always possible because there is a considerable statistical error. Regardless of the method used to retrieve the timestamps for the measurement, a slightly different execution time will always be measured on each execution of a program. This is due to a number of factors. For example, the program under consideration is not the only one executed at the time of measurement and the CPU is also used by other software at all times, including background processes, that may distort the measurement. A common approach to get a more accurate measurement is to execute the program multiple times, measure the execution time for each one of them and use the average or the median of these numbers. In this way, more executions entail a more accurate measurement.
+Accurately measuring **small wall-clock execution times** is not always possible because there is a considerable statistical error. Regardless of the method used to retrieve the timestamps for the measurement, a slightly different execution time will always be measured on each execution of a program. This is due to a number of factors. For example, the program under consideration is not the only one executed at the time of measurement and the CPU is also used by other software at all times, including background processes, that may distort the measurement. A common approach to get a more accurate measurement is to execute the program multiple times, measure the execution time for each one of them and use the average or the median of these numbers. In this way, more executions entail a more accurate measurement.
 
 Statbench performs multiple executions of the program, on each one of which it records the execution time and uses the [median](https://en.wikipedia.org/wiki/Median) and [median-absolute-deviation](https://en.wikipedia.org/wiki/Median_absolute_deviation) values on all the previous measurements to remove the [outliers](https://en.wikipedia.org/wiki/Outlier) and calculate an uncertainty for the result. The process stops when a desired uncertainty is reached.
 

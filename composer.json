@@ -1,8 +1,8 @@
 {
-    "name": "memassist/statbench",
+    "name": "statbench/statbench",
     "type": "library",
     "description": "Timing the execution of a program or a block of code.",
-    "homepage": "https://github.com/memassist/statbench",
+    "homepage": "https://github.com/statbench/statbench",
     "license": "MIT",
     "require-dev": {
         "phpunit/phpunit": "^9.4.3"
