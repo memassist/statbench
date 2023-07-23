@@ -4,9 +4,9 @@ namespace Statbench\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-class SampleTest extends TestCase
+final class SampleTest extends TestCase
 {
-    public function testTrueAssertsToTrue()
+    public function testTrueAssertsToTrue(): void
     {
         $this->assertTrue(true);
     }

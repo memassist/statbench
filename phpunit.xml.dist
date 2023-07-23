@@ -5,19 +5,33 @@
          colors="true"
          stopOnError="false"
          stopOnFailure="false"
-         verbose="true"
 >
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+    <!-- from phpunit 10.1 onwards: -->
+<!--    <source>-->
+<!--        <include>-->
+<!--            <directory suffix=".php">./src</directory>-->
+<!--        </include>-->
+<!--    </source>-->
+    <coverage includeUncoveredFiles="true"
+              pathCoverage="false"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="true">
+        <include>
             <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-clover" target="coverage.xml"/>
-    </logging>
+        </include>
+        <report>
+<!--            <xml outputDirectory="coverage-xml"/>-->
+            <html outputDirectory="coverage-html" lowUpperBound="50" highLowerBound="90"/>
+            <clover outputFile="coverage-clover.xml"/>
+<!--            <cobertura outputFile="coverage-cobertura.xml"/>-->
+<!--            <crap4j outputFile="coverage-crap4j.xml" threshold="50"/>-->
+<!--            <php outputFile="coverage.php"/>-->
+<!--            <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>-->
+        </report>
+    </coverage>
 </phpunit>

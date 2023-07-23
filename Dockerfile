@@ -19,9 +19,9 @@ RUN apk update \
 ### Make sure PHP's source files are deleted
  && docker-php-source delete \
 ### Clear cache
- && rm -rf /var/cache/apk/*
+ && rm -rf /var/cache/apk/* \
 ### Use the default development configuration
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" \
+ && mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" \
 ### Configure Xdebug
  && echo '[xdebug]'                            >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo 'zend_extension=xdebug.so'            >> /usr/local/etc/php/conf.d/xdebug.ini \
@@ -34,7 +34,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" \
  && echo 'xdebug.log_level=7'                  >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo 'xdebug.start_with_request=yes'       >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo 'xdebug.discover_client_host=0'       >> /usr/local/etc/php/conf.d/xdebug.ini \
- && echo 'xdebug.client_host=host.docker.internal"' >> /usr/local/etc/php/conf.d/xdebug.ini \
+ && echo 'xdebug.client_host=host.docker.internal' >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo 'xdebug.client_port=9000'             >> /usr/local/etc/php/conf.d/xdebug.ini \
 ### Install Composer
  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

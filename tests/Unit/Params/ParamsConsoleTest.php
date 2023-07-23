@@ -6,16 +6,16 @@ use PHPUnit\Framework\TestCase;
 
 use Statbench\Params\ParamsConsole;
 
-class ParamsConsoleTest extends TestCase
+final class ParamsConsoleTest extends TestCase
 {
-    public function testDefaultMembersReturn()
+    public function testDefaultMembersReturn(): void
     {
         $params = new ParamsConsole();
         $this->assertEquals('statbench', $params->getExecutable());
         $this->assertEquals('', $params->getCommand());
     }
 
-    public function testCustomMembersReturn()
+    public function testCustomMembersReturn(): void
     {
         $params = new ParamsConsole(
             'statbench_custom',

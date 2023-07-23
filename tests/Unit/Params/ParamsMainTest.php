@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
 
 use Statbench\Params\ParamsMain;
 
-class ParamsMainTest extends TestCase
+final class ParamsMainTest extends TestCase
 {
-    public function testDefaultMembersReturn()
+    public function testDefaultMembersReturn(): void
     {
         $params = new ParamsMain();
         $this->assertEquals(2, $params->getVerbosity());
@@ -23,7 +23,7 @@ class ParamsMainTest extends TestCase
         $this->assertEquals(true, $params->getSubtractDryRun());
     }
 
-    public function testCustomMembersReturn()
+    public function testCustomMembersReturn(): void
     {
         $params = new ParamsMain(
             1,

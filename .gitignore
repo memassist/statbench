@@ -8,4 +8,11 @@ phpcs.xml
 
 phpunit.xml
 .phpunit.result.cache
-coverage.xml
+
+/coverage-html
+/coverage-xml
+coverage-clover.xml
+coverage-cobertura.xml
+coverage-crap4j.xml
+coverage.php
+coverage.txt

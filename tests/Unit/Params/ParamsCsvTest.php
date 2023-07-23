@@ -6,16 +6,16 @@ use PHPUnit\Framework\TestCase;
 
 use Statbench\Params\ParamsCsv;
 
-class ParamsCsvTest extends TestCase
+final class ParamsCsvTest extends TestCase
 {
-    public function testDefaultMembersReturn()
+    public function testDefaultMembersReturn(): void
     {
         $params = new ParamsCsv();
         $this->assertEquals(false, $params->getReduction());
         $this->assertEquals(null, $params->getInputFilename());
     }
 
-    public function testCustomMembersReturn()
+    public function testCustomMembersReturn(): void
     {
         $params = new ParamsCsv(true, 'test_filename.csv');
         $this->assertEquals(true, $params->getReduction());

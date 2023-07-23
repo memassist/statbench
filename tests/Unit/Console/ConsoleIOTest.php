@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
 
 use Statbench\Console\ConsoleIO;
 
-class ConsoleIOTest extends TestCase
+final class ConsoleIOTest extends TestCase
 {
-    public function testGetsReturnsInputStream()
+    public function testGetsReturnsInputStream(): void
     {
         $i = fopen('php://memory', 'w+');
         $o = fopen('php://memory', 'w+');
@@ -23,7 +23,7 @@ class ConsoleIOTest extends TestCase
         fclose($o);
     }
 
-    public function testPutsWithoutParametersWritesToOutputStream()
+    public function testPutsWithoutParametersWritesToOutputStream(): void
     {
         $i = fopen('php://memory', 'w+');
         $o = fopen('php://memory', 'w+');
@@ -38,7 +38,7 @@ class ConsoleIOTest extends TestCase
         fclose($o);
     }
 
-    public function testPutsWithNewlineParameterSetToFalseWritesToOutputStream()
+    public function testPutsWithNewlineParameterSetToFalseWritesToOutputStream(): void
     {
         $i = fopen('php://memory', 'w+');
         $o = fopen('php://memory', 'w+');
@@ -53,7 +53,7 @@ class ConsoleIOTest extends TestCase
         fclose($o);
     }
 
-    public function testPutsWithStyleParameterSetWritesToOutputStream()
+    public function testPutsWithStyleParameterSetWritesToOutputStream(): void
     {
         $i = fopen('php://memory', 'w+');
         $o = fopen('php://memory', 'w+');

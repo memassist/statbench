@@ -9,9 +9,9 @@ use Statbench\Params\ParamsCsv;
 use Statbench\Params\ParamsMain;
 use Statbench\Params\ParamsConsoleWrapper;
 
-class ParamsConsoleWrapperTest extends TestCase
+final class ParamsConsoleWrapperTest extends TestCase
 {
-    public function testDefaultMembersReturn()
+    public function testDefaultMembersReturn(): void
     {
         $params_console_wrapper = new ParamsConsoleWrapper(
             new ParamsConsole('testexecutable', 'testcommand'),

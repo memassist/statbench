@@ -13,7 +13,7 @@ run:
 phpunit:
 	@echo -e "\n\n# Run phpunit tests"
 	@echo "============================="
-	./statbench.sh "./vendor/bin/phpunit --verbose tests"
+	./statbench.sh "./vendor/bin/phpunit"
 
 .PHONY: composer-install
 composer-install:
