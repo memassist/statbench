@@ -36,10 +36,10 @@ Statbench started out as a PHP implementation of the [Dumbbench](https://metacpa
 
 ## Notes
 
-Building the development environment:
+Running StatBench through the docker development container:
 
 ```bash
-docker build -t php-cli-statbench-dev:latest .
+./statbench.sh "php ./bin/statbench ..."
 ```
 
 ## References

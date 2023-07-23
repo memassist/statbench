@@ -37,8 +37,10 @@ RUN apk update \
  && echo 'xdebug.remote_host="docker.for.win.host.internal"' >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo 'xdebug.remote_port=9000'             >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo 'xdebug.idekey=PHPSTORM'              >> /usr/local/etc/php/conf.d/xdebug.ini \
- && echo 'xdebug.max_nesting_level=256'        >> /usr/local/etc/php/conf.d/xdebug.ini
+ && echo 'xdebug.max_nesting_level=256'        >> /usr/local/etc/php/conf.d/xdebug.ini \
 ### Install Composer
-# && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-EXPOSE 9000
+WORKDIR /app
+
+#EXPOSE 9000

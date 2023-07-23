@@ -3,12 +3,20 @@
 do_nothing:
 	echo 'Nothing to do'
 
-build:
-	docker build -t php-cli-statbench-dev:latest .
+.PHONY: run
+run:
+	@echo -e "\n\n# Run statbench without any parameters"
+	@echo "============================="
+	./statbench.sh "php ./bin/statbench"
 
-#composer:
-#	docker run -it \
-#	--name=statbench \
-#	-v $(pwd):/app \
-#	php-cli-statbench-dev \
-#	composer dump-autoload
+.PHONY: composer-install
+composer-install:
+	@echo -e "\n\n# Composer install"
+	@echo "============================="
+	./statbench.sh "composer install"
+
+.PHONY: composer-update
+composer-update:
+	@echo -e "\n\n# Composer update"
+	@echo "============================="
+	./statbench.sh "composer update"
