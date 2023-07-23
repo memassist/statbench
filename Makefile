@@ -9,6 +9,12 @@ run:
 	@echo "============================="
 	./statbench.sh "php ./bin/statbench"
 
+.PHONY: phpunit
+phpunit:
+	@echo -e "\n\n# Run phpunit tests"
+	@echo "============================="
+	./statbench.sh "./vendor/bin/phpunit --verbose tests"
+
 .PHONY: composer-install
 composer-install:
 	@echo -e "\n\n# Composer install"
